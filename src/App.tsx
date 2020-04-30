@@ -8,9 +8,11 @@ import Preview from './components/Preview';
 import { ReducerContext } from './components/ReducerWrapper';
 
 const App = () => {
-  const { dispatch } = useContext(ReducerContext);
+  const { state, dispatch } = useContext(ReducerContext);
 
   const handleReset = () => dispatch({ type: 'reset' });
+
+  const handleCreate = () => console.log(JSON.stringify(state.data));
 
   return (
     <div className={styles.wrapper}>
@@ -28,7 +30,9 @@ const App = () => {
         </Row>
         <Row className={styles.actions}>
           <Button onClick={handleReset}>重置</Button>
-          <Button type="primary">生成 Json</Button>
+          <Button type="primary" onClick={handleCreate}>
+            生成 Json
+          </Button>
         </Row>
       </section>
       <Preview />

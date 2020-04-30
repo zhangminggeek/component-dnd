@@ -1,8 +1,9 @@
 import { StateInterface } from './state';
+import createComponent from '../components/Config/rules';
 
 interface ActionInterface {
   type: string;
-  payload?: Object;
+  payload?: any;
 }
 
 export default function reducer(
@@ -13,7 +14,7 @@ export default function reducer(
     case 'add':
       return {
         ...state,
-        data: [...state.data, action.payload],
+        data: [...state.data, createComponent(action.payload)],
       };
     case 'reset':
       return {

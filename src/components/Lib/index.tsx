@@ -18,7 +18,7 @@ const Libs = () => {
     <div className={styles.wrapper}>
       <Typography.Title level={4}>请选择组件</Typography.Title>
       {Object.keys(CompType).map(item => (
-        <Button key={item} onClick={() => handleChoose(item)}>
+        <Button key={item} onClick={() => handleChoose(CompType[item])}>
           {CompType[item]}
         </Button>
       ))}
