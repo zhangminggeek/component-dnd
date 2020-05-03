@@ -6,6 +6,7 @@ import Board from './components/Board';
 import Config from './components/Config';
 import Preview from './components/Preview';
 import { ReducerContext } from './components/ReducerWrapper';
+import classnames from 'classnames';
 
 const App = () => {
   const { state, dispatch } = useContext(ReducerContext);
@@ -18,13 +19,13 @@ const App = () => {
     <div className={styles.wrapper}>
       <section className={styles.body}>
         <Row className={styles.content}>
-          <Col span={6} className={styles.left}>
+          <Col span={4} className={classnames(styles.panel, styles.left)}>
             <Lib />
           </Col>
-          <Col span={12} className={styles.center}>
+          <Col span={10} className={classnames(styles.panel, styles.center)}>
             <Board />
           </Col>
-          <Col span={6} className={styles.right}>
+          <Col span={10} className={classnames(styles.panel, styles.right)}>
             <Config />
           </Col>
         </Row>

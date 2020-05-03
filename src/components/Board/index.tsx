@@ -4,12 +4,12 @@ import { ReducerContext } from '../ReducerWrapper';
 import Item from './item';
 
 const Board = () => {
-  const { state, dispatch } = useContext(ReducerContext);
+  const { state } = useContext(ReducerContext);
 
   return (
-    <div className={styles.board}>
+    <div className={styles.wrapper}>
       {state.data.map(item => (
-        <Item key={item._id} type={`${item.type} ${item._id}`} />
+        <Item key={item._id} data={item} />
       ))}
     </div>
   );
