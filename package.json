@@ -11,6 +11,7 @@
   "author": "qianzm2490@vip.qq.com",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
     "antd": "^4.2.0",
     "classnames": "^2.2.6",
     "react": "^16.13.1",

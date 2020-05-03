@@ -6,6 +6,7 @@ interface ActionInterface {
   payload?: any;
 }
 
+// 更新当前操作组件数据
 const updateComp = (
   origin: Array<ComponentInstance>,
   values: ComponentInstance
@@ -35,12 +36,18 @@ export default function reducer(
       return {
         ...state,
         data: [],
-        cur: '',
+        cur: null,
       };
     case 'setCurrentComponent': // 修改当前操作组件
       return {
         ...state,
         cur: action.payload,
+      };
+    case 'removeComponent':
+      return {
+        ...state,
+        cur: action.payload === state.cur ? null : state.cur,
+        data: state.data.filter(item => item._id !== action.payload),
       };
     default:
       throw new Error('Unexpected action');
