@@ -43,7 +43,7 @@ export default function reducer(
         ...state,
         cur: action.payload,
       };
-    case 'removeComponent':
+    case 'remove':
       return {
         ...state,
         cur: action.payload === state.cur ? null : state.cur,

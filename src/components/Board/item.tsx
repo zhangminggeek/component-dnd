@@ -21,7 +21,7 @@ const Item: React.FC<ItemProps> = props => {
 
   const handleRemove = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
-    dispatch({ type: 'removeComponent', payload: id });
+    dispatch({ type: 'remove', payload: id });
   };
 
   return (
