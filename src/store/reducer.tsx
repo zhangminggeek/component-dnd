@@ -1,5 +1,7 @@
 import { StateInterface } from './state';
 import createComponent, { ComponentInstance } from '../components/Config/rules';
+import _ from 'lodash';
+import { move } from '../utils';
 
 interface ActionInterface {
   type: string;
@@ -12,8 +14,19 @@ const updateComp = (
   values: ComponentInstance
 ) => {
   const index = origin.findIndex(item => item._id === values._id);
-  const newData = [...origin];
+  const newData = _.cloneDeep(origin);
   newData.splice(index, 1, values);
+  return newData;
+};
+
+// 移动组件
+const moveComp = (
+  origin: Array<ComponentInstance>,
+  dragIndex: number,
+  targetIndex: number
+) => {
+  const newData = _.cloneDeep(origin);
+  move(newData, dragIndex, targetIndex);
   return newData;
 };
 
@@ -31,6 +44,15 @@ export default function reducer(
       return {
         ...state,
         data: updateComp(state.data, action.payload),
+      };
+    case 'move':
+      return {
+        ...state,
+        data: moveComp(
+          state.data,
+          action.payload.dragIndex,
+          action.payload.targetIndex
+        ),
       };
     case 'reset':
       return {

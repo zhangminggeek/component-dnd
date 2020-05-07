@@ -1,18 +1,12 @@
-import React, { useContext } from 'react';
-import styles from './index.less';
-import { ReducerContext } from '../ReducerWrapper';
-import Item from './item';
+import React from 'react';
+import Board from './board';
+import { DndProvider } from 'react-dnd';
+import Backend from 'react-dnd-html5-backend';
 
-const Board = () => {
-  const { state } = useContext(ReducerContext);
+const Index = () => (
+  <DndProvider backend={Backend}>
+    <Board />
+  </DndProvider>
+);
 
-  return (
-    <div className={styles.wrapper}>
-      {state.data.map(item => (
-        <Item key={item._id} data={item} />
-      ))}
-    </div>
-  );
-};
-
-export default Board;
+export default Index;
