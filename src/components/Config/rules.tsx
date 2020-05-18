@@ -38,6 +38,7 @@ export interface ComponentInstance extends ConfigInterface {
   _id: string;
   type: string;
   ele: ConfigInterface;
+  children?: Array<ComponentInstance>;
 }
 
 export default function createComponent(type: string): ComponentInstance {
@@ -45,5 +46,6 @@ export default function createComponent(type: string): ComponentInstance {
     _id: uuidv4(),
     type,
     ele: { ...rules[type] },
+    children: [],
   };
 }
