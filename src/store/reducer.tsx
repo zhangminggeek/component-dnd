@@ -11,7 +11,6 @@ interface ActionInterface {
 function removeComp(origin: Array<ComponentInstance>, id: string) {
   const newData = _.cloneDeep(origin);
   traverseFilterNodes(newData, '_id')(id);
-  console.log(newData);
   return newData;
 }
 

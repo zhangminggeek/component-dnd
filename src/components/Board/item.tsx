@@ -12,6 +12,7 @@ import { CompType } from '../Lib/libs';
 interface ItemProps {
   data: ComponentInstance;
   index: number;
+  children?: React.ReactNode;
   move: (dragIndex: number, hoverIndex: number) => void;
   onDrop: (dragItem: ComponentInstance, targetId: string) => void;
 }
@@ -26,7 +27,7 @@ const Item: React.FC<ItemProps> = props => {
   const { state, dispatch } = useContext(ReducerContext);
   const ref = useRef<HTMLDivElement>(null);
 
-  const { data, index, move, onDrop } = props;
+  const { data, index, children, move, onDrop } = props;
   const { type, _id } = data;
 
   const [{ isOverCurrent }, drop] = useDrop({
@@ -104,6 +105,7 @@ const Item: React.FC<ItemProps> = props => {
         className={styles.close}
         onClick={e => handleRemove(e, _id)}
       />
+      {children}
     </div>
   );
 };
