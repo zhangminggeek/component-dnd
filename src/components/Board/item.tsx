@@ -58,10 +58,14 @@ const Item: React.FC<ItemProps> = props => {
       item.index = hoverIndex;
     },
     drop(item: DropItem, monitor: DropTargetMonitor) {
+      const didDrop = monitor.didDrop();
+      if (didDrop) {
+        return;
+      }
       onDrop(item.data, data._id);
     },
     collect: (monitor: DropTargetMonitor) => ({
-      isOverCurrent: monitor.isOver(),
+      isOverCurrent: monitor.isOver({ shallow: true }),
     }),
   });
 
