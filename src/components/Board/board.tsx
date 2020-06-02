@@ -23,12 +23,12 @@ const Board = () => {
 
   // 拖拽放置
   const handleDrop = useCallback(
-    (dragItem: ComponentInstance, targetId: string) => {
-      if (!targetId || dragItem._id === targetId) return;
+    (dragItem: ComponentInstance, target: ComponentInstance) => {
+      if (!target._id || dragItem._id === target._id) return;
 
       dispatch({
         type: 'drop',
-        payload: { dragItem, targetId },
+        payload: { dragItem, target },
       });
     },
     [state.data]

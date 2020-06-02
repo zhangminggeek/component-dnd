@@ -9,6 +9,8 @@ const defaultComp: ComponentInstance = {
   _id: '',
   type: '',
   ele: {},
+  parentId: null,
+  level: 1,
 };
 
 const Config = () => {
@@ -56,6 +58,7 @@ const Config = () => {
             );
           })}
       </Form>
+      {JSON.stringify(data)}
     </div>
   );
 };

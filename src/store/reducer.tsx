@@ -40,12 +40,17 @@ function moveComp(
 function dropComp(
   origin: Array<ComponentInstance>,
   dragItem: ComponentInstance,
-  targetId: string
+  target: ComponentInstance
 ) {
   let newData = _.cloneDeep(origin);
   newData = removeComp(newData, dragItem._id);
+  // 递归找到放置节点后往 children 中加入拖拽节点
   traverseNodes(newData)((node: ComponentInstance) => {
-    if (node._id === targetId) {
+    if (node._id === target._id) {
+      // 修改父id
+      dragItem.parentId = target._id || null;
+      // 修改层级
+      dragItem.level = (target.level || 0) + 1;
       node.children && node.children.push(dragItem);
     }
   });
@@ -82,7 +87,7 @@ export default function reducer(
         data: dropComp(
           state.data,
           action.payload.dragItem,
-          action.payload.targetId
+          action.payload.target
         ),
       };
     case 'reset': // 重置

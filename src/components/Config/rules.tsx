@@ -39,6 +39,8 @@ export interface ComponentInstance extends ConfigInterface {
   type: string;
   ele: ConfigInterface;
   children?: Array<ComponentInstance>;
+  parentId: string | null;
+  level: number;
 }
 
 export default function createComponent(type: string): ComponentInstance {
@@ -47,5 +49,7 @@ export default function createComponent(type: string): ComponentInstance {
     type,
     ele: { ...rules[type] },
     children: [],
+    parentId: null,
+    level: 1,
   };
 }

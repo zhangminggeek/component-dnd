@@ -14,7 +14,7 @@ interface ItemProps {
   index: number;
   children?: React.ReactNode;
   move: (dragIndex: number, hoverIndex: number) => void;
-  onDrop: (dragItem: ComponentInstance, targetId: string) => void;
+  onDrop: (dragItem: ComponentInstance, target: ComponentInstance) => void;
 }
 
 export interface DropItem {
@@ -62,7 +62,7 @@ const Item: React.FC<ItemProps> = props => {
       if (didDrop) {
         return;
       }
-      onDrop(item.data, data._id);
+      onDrop(item.data, data);
     },
     collect: (monitor: DropTargetMonitor) => ({
       isOverCurrent: monitor.isOver({ shallow: true }),
